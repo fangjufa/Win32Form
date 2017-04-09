@@ -28,7 +28,7 @@ public:
 	TXWindow()
 	{
 		_hWnd = NULL;
-		szTitle = L"ÏÔÊ¾´°¿Ú";
+		szTitle = L"æ˜¾ç¤ºçª—å£";
 		szWindowClass = L"oglWindow";
 		width = 1920;
 		height = 1080;
@@ -42,29 +42,29 @@ public:
 		//Close();
 	}
 
-	HINSTANCE _hInst;					// µ±Ç°ÊµÀı
-	TCHAR* szTitle;					// ±êÌâÀ¸ÎÄ±¾
-	TCHAR* szWindowClass;			// Ö÷´°¿ÚÀàÃû
+	HINSTANCE _hInst;					// å½“å‰å®ä¾‹
+	TCHAR* szTitle;					// æ ‡é¢˜æ æ–‡æœ¬
+	TCHAR* szWindowClass;			// ä¸»çª—å£ç±»å
 
-	//Éú³ÉµÄ´°¿Ú¾ä±ú
+	//ç”Ÿæˆçš„çª—å£å¥æŸ„
 	HWND _hWnd;
 	bool isFullScreen;
 
 
-	/// <summary> È«ÆÁÊ±´°¿ÚµÄ¿í. </summary>
+	/// <summary> å…¨å±æ—¶çª—å£çš„å®½. </summary>
 	UINT width;
 
-	/// <summary> È«ÆÁÊ±´°¿ÚµÄ¸ß. </summary>
+	/// <summary> å…¨å±æ—¶çª—å£çš„é«˜. </summary>
 	UINT height;
 
-	/// <summary> È«ÆÁÊ±µÄ³õÊ¼Î»ÖÃx. </summary>
+	/// <summary> å…¨å±æ—¶çš„åˆå§‹ä½ç½®x. </summary>
 	int startx;
 
-	/// <summary> È«ÆÁÊ±µÄ³õÊ¼Î»ÖÃy. </summary>
+	/// <summary> å…¨å±æ—¶çš„åˆå§‹ä½ç½®y. </summary>
 	int starty;
 
 	///-------------------------------------------------------------------------------------------------
-	/// <summary> ´´½¨Ò»¸ö´°¿Ú. </summary>
+	/// <summary> åˆ›å»ºä¸€ä¸ªçª—å£. </summary>
 	///
 	/// <remarks> Xian.dai, 2017/3/23. </remarks>
 	///
@@ -74,12 +74,12 @@ public:
 	///-------------------------------------------------------------------------------------------------
 	BOOL Create(WNDPROC proc)
 	{
-		if (_hWnd != NULL)//Èç¹ûÒÑ¾­´´½¨ÁËÒ»¸ö´°¿ÚÄÇÃ´²»ÔÙÖØ¸´´´½¨
+		if (_hWnd != NULL)//å¦‚æœå·²ç»åˆ›å»ºäº†ä¸€ä¸ªçª—å£é‚£ä¹ˆä¸å†é‡å¤åˆ›å»º
 		{
 			return FALSE;
 		}
 
-		//·µ»ØÄ£¿éµÄ¾ä±ú
+		//è¿”å›æ¨¡å—çš„å¥æŸ„
 		_hInst = GetModuleHandle(NULL);
 
 		WNDCLASSEX wcex;
@@ -88,7 +88,7 @@ public:
 		wcex.cbSize = sizeof(WNDCLASSEX);
 		wcex.style = CS_HREDRAW | CS_VREDRAW | CS_DBLCLKS | CS_OWNDC;
 
-		//ÉèÖÃÆä»Øµ÷º¯Êı
+		//è®¾ç½®å…¶å›è°ƒå‡½æ•°
 		if (proc != NULL)
 			wcex.lpfnWndProc = proc;
 		else
@@ -99,14 +99,14 @@ public:
 
 		wcex.hCursor = LoadCursor(NULL, IDC_ARROW);
 		wcex.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
-		//wcex.lpszMenuName	= MAKEINTRESOURCE(IDC_WIN01);//²»Òª²Ëµ¥À¸
-		wcex.lpszClassName = szWindowClass;//Ö÷´°¿ÚÀàÃû
+		//wcex.lpszMenuName	= MAKEINTRESOURCE(IDC_WIN01);//ä¸è¦èœå•æ 
+		wcex.lpszClassName = szWindowClass;//ä¸»çª—å£ç±»å
 		//wcex.hIconSm = LoadIcon(wcex.hInstance, MAKEINTRESOURCE(IDI_SMALL));
 
-		//×¢²á´°¿ÚÀà,Õâ¸öÊÇ±ØĞëµÄ£¬Òª²»È»ÏÂÃæµÄCreateWindowº¯Êı×Ü·µ»ØNULL
+		//æ³¨å†Œçª—å£ç±»,è¿™ä¸ªæ˜¯å¿…é¡»çš„ï¼Œè¦ä¸ç„¶ä¸‹é¢çš„CreateWindowå‡½æ•°æ€»è¿”å›NULL
 		ATOM atom = RegisterClassEx(&wcex);
 
-		//»ñÈ¡ÏÔÊ¾Æ÷ĞÅÏ¢¡£
+		//è·å–æ˜¾ç¤ºå™¨ä¿¡æ¯ã€‚
 		mInfo.clear();
 		//get number of monitors
 		mInfo.reserve(GetSystemMetrics(SM_CMONITORS));
@@ -126,7 +126,7 @@ public:
 		}
 		for (int i = 0; i < mInfo.size(); i++)
 		{
-			//»ñÈ¡ÌØ¶¨ÏÔÊ¾Æ÷µÄĞÅÏ¢£¬×îÖØÒªµÄÊÇ·Ö±æÂÊ£¬ÆğÊ¼×ø±êµÈ¡£
+			//è·å–ç‰¹å®šæ˜¾ç¤ºå™¨çš„ä¿¡æ¯ï¼Œæœ€é‡è¦çš„æ˜¯åˆ†è¾¨ç‡ï¼Œèµ·å§‹åæ ‡ç­‰ã€‚
 			if(!mInfo[i].isPrimary)
 			{
 				RECT rect = mInfo[0].rect;
@@ -138,12 +138,12 @@ public:
 			}
 		}
 
-		//»ñÈ¡ÒÔÏñËØÎªµ¥Î»µÄÆÁÄ»³ß´ç¡£
-		//´òÓ¡µÃ³öÈ·ÊµµÃµ½ÁË³¤¿í¡£
+		//è·å–ä»¥åƒç´ ä¸ºå•ä½çš„å±å¹•å°ºå¯¸ã€‚
+		//æ‰“å°å¾—å‡ºç¡®å®å¾—åˆ°äº†é•¿å®½ã€‚
 		cout << "width:" << width << "  height:" << height << endl;
 
 		_hWnd = CreateWindow(szWindowClass, szTitle, WS_OVERLAPPEDWINDOW,
-			0, 0, width, height, NULL, NULL, _hInst, NULL);
+			startx, starty, width, height, NULL, NULL, _hInst, NULL);
 
 		if (!_hWnd)
 		{
@@ -177,20 +177,20 @@ public:
 	{
 		if (_hWnd == NULL)
 		{
-			cout<<"TXWindow.ChangeToFullScreenInRun():´íÎó£¬_hWndÎª¿Õ£¡ \r\n";
+			cout<<"TXWindow.ChangeToFullScreenInRun():é”™è¯¯ï¼Œ_hWndä¸ºç©ºï¼ \r\n";
 			return;
 		}
 
-		//´ÓÈ«ÆÁÍËµ½·ÇÈ«ÆÁÓĞÎÊÌâ¡£
+		//ä»å…¨å±é€€åˆ°éå…¨å±æœ‰é—®é¢˜ã€‚
 		if(isFullScreen)
 		{
 
 			SetWindowLong(_hWnd, GWL_STYLE, GetWindowLong(_hWnd, GWL_STYLE) | WS_OVERLAPPEDWINDOW);
 
-			//GWL_EXSTYLE  extended styleÀ©Õ¹¸ñÊ½¡£WS_EX_WINDOWEDGE  Ê¹µÃ´°¿ÚÏÔÊ¾£¬²¢²»¸²¸ÇÏÂÃæµÄÈÎÎñÀ¸¡£
+			//GWL_EXSTYLE  extended styleæ‰©å±•æ ¼å¼ã€‚WS_EX_WINDOWEDGE  ä½¿å¾—çª—å£æ˜¾ç¤ºï¼Œå¹¶ä¸è¦†ç›–ä¸‹é¢çš„ä»»åŠ¡æ ã€‚
 			SetWindowLong(_hWnd, GWL_EXSTYLE, GetWindowLong(_hWnd, GWL_EXSTYLE) | WS_EX_WINDOWEDGE);
 
-			//ÔÚ¶àÏÔÊ¾Æ÷ÉÏ²»ÖªµÀ»á²»»áÓĞÎÊÌâ£¬ÊÇ·ñ»áÔÚÖ÷ÆÁÉÏÏÔÊ¾
+			//åœ¨å¤šæ˜¾ç¤ºå™¨ä¸Šä¸çŸ¥é“ä¼šä¸ä¼šæœ‰é—®é¢˜ï¼Œæ˜¯å¦ä¼šåœ¨ä¸»å±ä¸Šæ˜¾ç¤º
 			//SetWindowPos(_hWnd, NULL, startx, starty, width, height, SWP_SHOWWINDOW);// SWP_FRAMECHANGED);
 		}
 		else
@@ -215,11 +215,11 @@ public:
 		return RECT();
 	}
 private:
-	//ËùÓĞµÄÏÔÊ¾Æ÷ĞÅÏ¢¡£
+	//æ‰€æœ‰çš„æ˜¾ç¤ºå™¨ä¿¡æ¯ã€‚
 	vector<ALLMONITORINFO> mInfo;
 
 	///-------------------------------------------------------------------------------------------------
-	/// <summary> Ò»¸öWndProcÏûÏ¢´¦Àíº¯ÊıÄ£°å. </summary>
+	/// <summary> ä¸€ä¸ªWndProcæ¶ˆæ¯å¤„ç†å‡½æ•°æ¨¡æ¿. </summary>
 	///
 	/// <remarks> Xian Dai, 2017/3/31. </remarks>
 	///
@@ -235,19 +235,19 @@ private:
 	static	LRESULT CALLBACK  MyWndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 	{
 		int wmId, wmEvent;
-		//dxlib::Debug::Log("WndProc():½øÈëÏûÏ¢´¦Àíº¯Êı message = %d \r\n", message);
+		//dxlib::Debug::Log("WndProc():è¿›å…¥æ¶ˆæ¯å¤„ç†å‡½æ•° message = %d \r\n", message);
 		switch (message)
 		{
 		case WM_COMMAND:
 			break;
 		case WM_PAINT:
 			//hdc = BeginPaint(hWnd, &ps);
-			//// TODO:  ÔÚ´ËÌí¼ÓÈÎÒâ»æÍ¼´úÂë...
+			//// TODO:  åœ¨æ­¤æ·»åŠ ä»»æ„ç»˜å›¾ä»£ç ...
 			//EndPaint(hWnd, &ps);
 			break;
 
 		case WM_KEYDOWN:
-			//´¦Àí¼üÅÌÉÏÄ³Ò»¼ü°´ÏÂµÄÏûÏ¢
+			//å¤„ç†é”®ç›˜ä¸ŠæŸä¸€é”®æŒ‰ä¸‹çš„æ¶ˆæ¯
 		 
 			return 0;
 
@@ -261,8 +261,8 @@ private:
 	}
 
 	///----------------------------------------------------------------------------------------
-	///»ñÈ¡ËùÓĞÏÔÊ¾Æ÷µÄĞÅÏ¢£¬²¢°ÑËüÃÇ´æ´¢ÔÚvectorÊı×éÄÚ¡£
-	///¸Ã·½·¨»á×÷ÎªEnumDisplayMonitorsµÄ»Øµ÷º¯Êı£¬¸ÃvectorÊı×éÒ²»áÒÔ´ËĞÎÊ½´«³öÈ¥¡£
+	///è·å–æ‰€æœ‰æ˜¾ç¤ºå™¨çš„ä¿¡æ¯ï¼Œå¹¶æŠŠå®ƒä»¬å­˜å‚¨åœ¨vectoræ•°ç»„å†…ã€‚
+	///è¯¥æ–¹æ³•ä¼šä½œä¸ºEnumDisplayMonitorsçš„å›è°ƒå‡½æ•°ï¼Œè¯¥vectoræ•°ç»„ä¹Ÿä¼šä»¥æ­¤å½¢å¼ä¼ å‡ºå»ã€‚
 	///
 	///----------------------------------------------------------------------------------------
 	static BOOL CALLBACK MonitorEnumProc(__in  HMONITOR hMonitor, __in  HDC hdcMonitor, __in  LPRECT lprcMonitor, __in  LPARAM dwData)
